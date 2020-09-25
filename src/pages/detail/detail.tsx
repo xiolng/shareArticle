@@ -91,12 +91,17 @@ export default class Detail extends Component {
         <RichText
           nodes={
             advertisementContent && advertisementContent
-              .replace(/<img/gi, `<img style="width: ${Taro.getSystemInfoSync().screenWidth}px;max-width: 100%;display: block"`)
+              .replace(/<img/gi, `<img style="width: 100%;max-width: 100% !important;display: block; margin: 0 auto;"`)
+              .replace(/">/gi, `" style="width: 100%;max-width: 100% !important;display: block">`)
+              .replace(/"\/>/gi, `" style="width: 100%;max-width: 100% !important;display: block">`)
               .replace(/src="/gi, `src="https://ad.noster.cn`)
               .replace(/width="/gi, 'w=')
               .replace(/height=/gi, 'h=')
               .replace(/<section/g, '<div')
-              .replace(/\/section>/g, '\div>')
+              .replace(/\/section>/g, '\/div>')
+              .replace(/<p/g, '<div')
+              .replace(/\/p>/g, '\/div>')
+              .replace(/\/div>/g, ' style="width: 100%; height: auto;" \/div>')
           }
         />
       </View>
