@@ -64,6 +64,10 @@ export default class Index extends Component {
     Taro.request({
       method: "POST",
       url: 'https://ad.noster.cn/advertising/advertisement/adList',
+
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
       data: {
         adName: searchName,
         ...pages,

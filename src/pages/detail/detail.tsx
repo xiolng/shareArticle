@@ -17,7 +17,8 @@ export default class Detail extends Component {
     shareDetail: {
       shareDetail: '',
       shareImg: '',
-      shareName: ''
+      shareName: '',
+      advertisementId: ''
     }
   }
 
@@ -29,8 +30,8 @@ export default class Detail extends Component {
 
   componentWillUnmount() {
   }
-
-  componentDidShow() {
+  onLoad(options){
+    console.log(33333, options)
     Taro.showShareMenu({
       withShareTicket: true,
       menus: ['shareAppMessage', 'shareTimeline']
@@ -66,19 +67,26 @@ export default class Detail extends Component {
     })
   }
 
+  componentDidShow() {
+  }
+
   onShareAppMessage() {
-    return {
-      title: this.state.shareDetail.shareName,
-      path: `/pages/details/details?id=${getCurrentInstance().router.params.id}`,
-      imageUrl: 'https://ad.noster.cn' + this.state.shareDetail.shareImg,
+    const {shareImg, shareName, advertisementId} = this.state.shareDetail
+    const data = {
+      title: shareName,
+      path: '/pages/detail/detail?id=' + advertisementId,
+      imageUrl: 'https://ad.noster.cn' + shareImg,
     }
+    return data
   }
   onShareTimeline() {
-    return {
-      title: this.state.shareDetail.shareName,
-      path: `/pages/details/details?id=${getCurrentInstance().router.params.id}`,
-      imageUrl: 'https://ad.noster.cn' + this.state.shareDetail.shareImg,
+    const {shareImg, shareName, advertisementId} = this.state.shareDetail
+    const data = {
+      title: shareName,
+      path: '/pages/detail/detail?id=' + advertisementId,
+      imageUrl: 'https://ad.noster.cn' + shareImg,
     }
+    return data
   }
 
   componentDidHide() {
